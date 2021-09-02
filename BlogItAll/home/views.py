@@ -4,11 +4,10 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
-    if request.user.is_anonymous:
-        print('hello')
+    if request.user.is_authenticated:
+        return render(request, 'index.html')
+    else:
         return redirect('loginUser')
-
-    return render(request, 'index.html')
 
 def loginUser(request):
     if request.method=='POST':
